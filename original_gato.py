@@ -35,17 +35,20 @@ class GameController(TwoPlayersGame):
                     self.actualBoard = random.randint(0, 8)
                     while not self.closedBoards.__contains__(self.actualBoard):
                         self.actualBoard = random.randint(0, 8)
+                    print('Playing on board ' + str(self.actualBoard))
                     return [a + 1 for a, b in enumerate(self.board[self.actualBoard]) if b == 0]
                 else:
+                    print('Playing on board ' + str(self.actualBoard+1))
                     return []
             else:
+                print('Playing on board ' + str(self.actualBoard+1))
                 return moves
         else:
             self.actualBoard = random.randint(0, 8)
-            while self.closedBoards.__contains__(self.actualBoard):
+            while self.closedBoards.__contains__(self.actualBoard+1):
                 self.actualBoard = random.randint(0, 8)
+            print('Playing on board ' + str(self.actualBoard+1))
             return [a + 1 for a, b in enumerate(self.board[self.actualBoard]) if b == 0]
-        print('Playing on board ' + str(self.actualBoard))
 
     # Update the board after making a move
     def make_move(self, move):
