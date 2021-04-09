@@ -38,12 +38,14 @@ class GameController(TwoPlayersGame):
                     return [a + 1 for a, b in enumerate(self.board[self.actualBoard]) if b == 0]
                 else:
                     return []
+            else:
+                return moves
         else:
             self.actualBoard = random.randint(0, 8)
-            while not self.closedBoards.__contains__(self.actualBoard):
+            while self.closedBoards.__contains__(self.actualBoard):
                 self.actualBoard = random.randint(0, 8)
             return [a + 1 for a, b in enumerate(self.board[self.actualBoard]) if b == 0]
-        print('Playing on board ' + self.actualBoard)
+        print('Playing on board ' + str(self.actualBoard))
 
     # Update the board after making a move
     def make_move(self, move):
@@ -115,7 +117,7 @@ class GameController(TwoPlayersGame):
         elif self.checkWinIA():
             return -1
         else:
-            return 0
+            return -100
 
 
 if __name__ == "__main__":
